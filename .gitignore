@@ -2,6 +2,7 @@
 .vscode/
 .idx/
 __pycache__/
+colecciones/
 key.json
 help.txt
 .env
