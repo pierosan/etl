@@ -3,3 +3,5 @@
 .idx/
 __pycache__/
 key.json
+help.txt
+.env
