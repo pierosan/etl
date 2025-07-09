@@ -9,11 +9,11 @@ df = pd.read_csv(usuarios_csv)
 # remplaza id por id_origen para mantener las referencias del id original 
 df = df.rename(columns={'id': 'id_origen'})
 
-# generar id secuenciales de 1 a n
-df.insert(0, 'id', range(1, 1 + len(df)))
-
 # renombrar 'fechaCreacion' a 'fecha_creacion'
 df = df.rename(columns={'fechaCreacion': 'fecha_creacion'})
+
+# generar id secuenciales de 1 a n
+df.insert(0, 'id', range(1, 1 + len(df)))
 
 # reordenar las columnas 
 df = df[['id', 'nombre', 'dni', 'area', 'empresa', 'fecha_creacion', 'id_origen']]
