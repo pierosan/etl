@@ -2,7 +2,7 @@
 .vscode/
 .idx/
 __pycache__/
-colecciones/
+extraccion/colecciones/*.csv
 key.json
 help.txt
 .env
