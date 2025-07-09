@@ -3,6 +3,7 @@
 .idx/
 __pycache__/
 extraccion/colecciones/*.csv
+transformacion/resultados/*.csv
 key.json
 help.txt
 .env
