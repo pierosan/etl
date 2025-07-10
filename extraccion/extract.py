@@ -2,10 +2,14 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import pandas as pd
 import os
+import dotenv
+
+dotenv.load_dotenv()
+
 
 # --- Configuración ---
 # Ruta a tu archivo de clave privada (asegúrate de que sea la ruta correcta)
-LLAVE_PRIVADA = 'key.json'
+LLAVE_PRIVADA =  os.getenv('key_access')
 # Directorio donde se guardarán los archivos CSV
 CARPETA_SALIDA = 'colecciones'
 
