@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 
-def conexion(host_name, user_name, user_password):
+def iniciar_conexion(host_name, user_name, user_password):
     db = None
     try:
         db = mysql.connector.connect(
