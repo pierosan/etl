@@ -30,6 +30,11 @@ df_sesiones = pd.merge(
 
 df_sesiones['timestamp'] = pd.to_datetime(df_sesiones['timestamp'])
 
+df_sesiones['timestamp'] = df_sesiones['timestamp'].dt.tz_convert('Etc/GMT+5')
+
+# Eliminar los microsegundos, segundos y la zona horaria
+df_sesiones['timestamp'] = df_sesiones['timestamp'].dt.floor('min')
+
 df_sesiones = df_sesiones[['id', 'id_usuario', 'tipo_cierre', 'timestamp']]
 
 sesiones_csv_salida = '../resultados/fact_sesiones.csv'

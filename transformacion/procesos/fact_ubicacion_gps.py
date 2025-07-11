@@ -32,6 +32,11 @@ df_ubicacion_gps = df_ubicacion_gps.dropna(subset=['id_dispositivo'])
 # 4. Convertir 'hora_inactividad' a formato datetime
 df_ubicacion_gps['timestamp'] = pd.to_datetime(df_ubicacion_gps['timestamp'])
 
+df_ubicacion_gps['timestamp'] = df_ubicacion_gps['timestamp'].dt.tz_convert('Etc/GMT+5')
+
+# Eliminar los microsegundos, segundos y la zona horaria
+df_ubicacion_gps['timestamp'] = df_ubicacion_gps['timestamp'].dt.floor('min')
+
 # Seleccionar solo las columnas deseadas para fact_inactividad
 df_ubicacion_gps = df_ubicacion_gps[['id', 'id_dispositivo', 'timestamp', 'latitud', 'longitud']]
 

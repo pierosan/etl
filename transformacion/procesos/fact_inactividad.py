@@ -31,6 +31,13 @@ df_inactividad = pd.merge(
 # 4. Convertir 'hora_inactividad' a formato datetime
 df_inactividad['hora_inactividad'] = pd.to_datetime(df_inactividad['hora_inactividad'])
 
+df_inactividad['hora_inactividad'] = df_inactividad['hora_inactividad'].dt.tz_localize('UTC')
+
+df_inactividad['hora_inactividad'] = df_inactividad['hora_inactividad'].dt.tz_convert('Etc/GMT+5')
+
+# Eliminar los microsegundos, segundos y la zona horaria
+df_inactividad['hora_inactividad'] = df_inactividad['hora_inactividad'].dt.floor('min')
+
 # Seleccionar solo las columnas deseadas para fact_inactividad
 df_inactividad = df_inactividad[['id', 'id_usuario', 'hora_inactividad']]
 

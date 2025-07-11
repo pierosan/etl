@@ -24,6 +24,11 @@ df['dni'] = df['dni'].astype(int)
 # transforma la fecha a formato datetime
 df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
 
+df['fecha_creacion'] = df['fecha_creacion'].dt.tz_convert('Etc/GMT+5')
+
+# Eliminar los microsegundos, segundos y la zona horaria
+df['fecha_creacion'] = df['fecha_creacion'].dt.floor('min')
+
 # --- Guardar el resultado ---
 usuarios_csv_salida = '../resultados/dim_usuario.csv'
 df.to_csv(usuarios_csv_salida, index=False)

@@ -37,6 +37,11 @@ df_dispositivos['num_dispositivo'] = df_dispositivos['num_dispositivo'].astype(i
 # transforma la fecha a formato datetime
 df_dispositivos['fecha_registro'] = pd.to_datetime(df_dispositivos['fecha_registro'])
 
+df_dispositivos['fecha_registro'] = df_dispositivos['fecha_registro'].dt.tz_convert('Etc/GMT+5')
+
+# Eliminar los microsegundos, segundos y la zona horaria
+df_dispositivos['fecha_registro'] = df_dispositivos['fecha_registro'].dt.floor('min')
+
 # --- Guardar el resultado ---
 dispositivos_csv_salida = '../resultados/dim_dispositivo.csv'
 df_dispositivos.to_csv(dispositivos_csv_salida, index=False)
