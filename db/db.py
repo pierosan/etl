@@ -9,6 +9,7 @@ dotenv.load_dotenv()
 DB_HOST = os.getenv('DB_HOST')
 DB_USUARIO = os.getenv('DB_USUARIO')
 DB_CONTRASENA = os.getenv('DB_CONTRASENA')
+DB_NOMBRE = os.getenv('DB_NOMBRE')
 
 def iniciar_conexion():
     db = None
@@ -17,6 +18,7 @@ def iniciar_conexion():
             host=DB_HOST,
             user=DB_USUARIO,
             passwd=DB_CONTRASENA,
+            database=DB_NOMBRE
         )
         if db.is_connected():
             print(f"Conexión exitosa a la base de datos ")
