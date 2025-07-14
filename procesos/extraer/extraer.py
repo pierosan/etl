@@ -13,7 +13,7 @@ def extraccion(ref_coleccion, nombre_coleccion):
         doc_data = doc.to_dict()
         doc_data['id'] = doc.id  
         data.append(doc_data)
-        print(f"[{index+1}/{total}] {doc_data['id']}")
+        print(f"[{index+1}/{total}] Extrayendo...")
 
     if data:
         df = pd.DataFrame(data)
