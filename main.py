@@ -1,4 +1,3 @@
-import os
 import dotenv
 import pandas as pd
 pd.set_option('display.max_columns', None)
@@ -10,7 +9,7 @@ print("Iniciando proceso ETL\n")
 
 # proceso de extraccion
 from procesos.extraer import extraer
-print("Iniciando proceso de extraccion\n")
+print("\nIniciando proceso de extraccion\n")
 df_usuario, df_dispositivo, df_inactividad, df_reserva, df_sesion, df_ubicacion = extraer.iniciar()
 
 
@@ -26,3 +25,5 @@ from procesos.carga import carga
 carga.borrar_tablas()
 carga.crear_tablas()
 carga.iniciar(df_usuario, df_dispositivo, df_inactividad, df_reserva, df_sesion, df_ubicacion)
+
+print("\nProceso ETL terminado\n")

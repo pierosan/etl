@@ -2,7 +2,7 @@ from db import db_mysql
 from . import dim_usuario_carga, dim_dispositivo_carga, fact_inactividad_carga, fact_reserva_carga, fact_sesion_carga, fact_ubicacion_gps_carga
 
 def borrar_tablas():
-    print("\nBorrando tablas...")
+    print("Borrando tablas...")
     db, cursor = db_mysql.iniciar_conexion()
     tablas = ['fact_ubicacion_gps', 'fact_sesion', 'fact_reserva', 'fact_inactividad', 'dim_dispositivo', 'dim_usuario']
     for tab in tablas:
@@ -94,6 +94,7 @@ def crear_tablas():
 
 def iniciar(df_usuario, df_dispositivo, df_inactividad, df_reserva, df_sesion, df_ubicacion):
     print("\nCargando datos a la base de datos")
+    
     db, cursor = db_mysql.iniciar_conexion()
     dim_usuario_carga.cargar(df_usuario, db, cursor)
     dim_dispositivo_carga.cargar(df_dispositivo, db, cursor)
@@ -102,4 +103,5 @@ def iniciar(df_usuario, df_dispositivo, df_inactividad, df_reserva, df_sesion, d
     fact_sesion_carga.cargar(df_sesion, db, cursor)
     fact_ubicacion_gps_carga.cargar(df_ubicacion, db, cursor)
     db_mysql.finalizar_conexion(db, cursor)
-    
+
+    print("\nProceso de carga la base de datos completado.")

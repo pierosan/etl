@@ -1,7 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
 import os
-import dotenv
 
 # Define tus credenciales de la base de datos (pueden venir de un archivo de configuración, variables de entorno, etc.)
 DB_HOST = os.getenv('DB_HOST')
@@ -13,7 +12,7 @@ def iniciar_conexion():
     db = None
     cursor = None
     try:
-        print("Conectandose a la base de datos fob_guard...")
+        print("\nConectandose a la base de datos fob_guard...")
         db = mysql.connector.connect(
             host=DB_HOST,
             user=DB_USUARIO,
@@ -21,13 +20,14 @@ def iniciar_conexion():
             database=DB_NOMBRE
         )
         if db.is_connected():
-            print("Conexión exitosa a la base de datos fob_guard")
+            print("Conexión exitosa a la base de datos fob_guard\n")
             cursor = db.cursor()
     except Error as e:
         print(f"Error al conectar a la base de datos: {e}")
     return db, cursor
 
 def finalizar_conexion(db, cursor):
-    print("Cerrando conexion a la base de datos...")
+    print("\nCerrando conexion a la base de datos...")
     cursor.close()
     db.close()
+    print("Conexion a la base de datos cerrada\n")
