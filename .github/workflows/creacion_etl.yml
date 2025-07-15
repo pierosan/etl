@@ -19,4 +19,5 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         scope: subscription
+        region: brazilsouth
         template: ./iac/azure_crear_infraestructura.bicep
