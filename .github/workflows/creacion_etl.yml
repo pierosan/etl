@@ -27,3 +27,20 @@ jobs:
         resourceGroupName: "grupo_recursos_etl"
         template: ./iac/azure_crear_infraestructura.bicep
         parameters: 'administratorLogin=${{ secrets.DB_USUARIO }} administratorLoginPassword=${{ secrets.DB_PASS }}'
+        
+    - name: MYSQL Setup
+      run: |
+        sudo apt-get install -y mysql-client
+        mysql -h dbfobguard.mysql.database.azure.com \
+              -u ${{ secrets.DB_USUARIO }} \
+              -p${{ secrets.DB_PASS }} \
+              -e "
+              CREATE DATABASE fob_guard
+              CHARACTER SET utf8mb4
+              COLLATE utf8mb4_unicode_ci;
+              CREATE USER '${{ secrets.DB_ETL_USUARIO }}'@'%' IDENTIFIED BY '${{ secrets.DB_ETL_PASS }}';
+              GRANT CREATE, INSERT, DROP, REFERENCES ON fob_guard.* TO '${{ secrets.DB_ETL_USUARIO }}'@'%';
+              CREATE USER '${{ secrets.DB_POWERBI_USUARIO }}'@'%' IDENTIFIED BY '${{ secrets.DB_POWERBI_PASS }}';
+              GRANT REFERENCES ON fob_guard.* TO '${{ secrets.DB_POWERBI_USUARIO }}'@'%';
+              FLUSH PRIVILEGES;
+              "
