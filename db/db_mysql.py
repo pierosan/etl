@@ -4,15 +4,15 @@ from encriptado import desencriptar
 import os
 
 # Define tus credenciales de la base de datos (pueden venir de un archivo de configuración, variables de entorno, etc.)
-db_host_cifrada = "f9e664602a0afaa8f31072e60980bd462ee9eb9d6ce5408c111719f9805d814e"
-db_usuario_cifrada = "f9e664602a"
-db_contrasena_cifrada = "f9eac7c6c756d6aa0aa2"
+
+db_usuario_cifrada = "fda04fbd3db9305602827dbcc1"
+db_contrasena_cifrada = "e4aa8d6372336eb3aff07999f886f5c7"
 
 def iniciar_conexion():
     db = None
     cursor = None
     try:
-        db_host = desencriptar.descifrar_texto(db_host_cifrada)
+        db_host = "dbfobguard.mysql.database.azure.com"
         db_usuario = desencriptar.descifrar_texto(db_usuario_cifrada)
         db_contrasena =desencriptar.descifrar_texto(db_contrasena_cifrada)
         print("\nConectandose a la base de datos fob_guard...")
