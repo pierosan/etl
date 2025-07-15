@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.gitignore
+desencriptar_prueba.py
+encriptar_prueba.py
+generar_llave.py
+key.json
+readme.md
+iac/
+venv/
+.
