@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-22.04
 
     steps:
@@ -24,5 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: |
-            pieros/etl_fob_guard:latest
+          tags: pierosan/etl_fob_guard:latest
