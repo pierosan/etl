@@ -26,4 +26,3 @@ jobs:
           push: true
           tags: |
             pieros/etl_fob_guard:latest
-            pieros/etl_fob_guard:${{ steps.vars.outputs.sha_short }}
