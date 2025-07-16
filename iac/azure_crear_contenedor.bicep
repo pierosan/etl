@@ -1,7 +1,7 @@
 param llave string
 
 
-resource name_resource 'Microsoft.App/jobs@2024-08-02-preview' = {
+resource etlJob 'Microsoft.App/jobs@2024-08-02-preview' = {
   name: 'contenedoretl'
   location: 'brazilsouth'
   properties: {
