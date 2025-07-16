@@ -1,0 +1,32 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-PE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["fob_guard dim_dispositivo","fob_guard dim_usuario","fob_guard fact_inactividad","fob_guard fact_reserva","fob_guard fact_ubicacion_gps","fob_guard fact_sesion"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.143.878.0 (25.05)+b20aa3b866ec1b70879135a4e60e4b1301c75b21
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'fob_guard dim_dispositivo'
+ref table DateTableTemplate_b9d4a2b2-acd8-4151-b64f-0bad03511b76
+ref table LocalDateTable_2940af6b-cd49-4158-9fa8-d330921a2140
+ref table 'fob_guard dim_usuario'
+ref table LocalDateTable_dee01f58-fd13-4cb2-8050-b92f5f8aa098
+ref table 'fob_guard fact_inactividad'
+ref table LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a
+ref table 'fob_guard fact_reserva'
+ref table LocalDateTable_29c97ab0-d078-4db4-8d8f-e66eec7f7003
+ref table 'fob_guard fact_ubicacion_gps'
+ref table LocalDateTable_d6512e48-8b95-4b32-a77c-c9605b1f2648
+ref table 'fob_guard fact_sesion'
+ref table LocalDateTable_429bfc5b-91ea-429a-9a5c-7b6cadb7f16b
+
+ref cultureInfo es-ES
+

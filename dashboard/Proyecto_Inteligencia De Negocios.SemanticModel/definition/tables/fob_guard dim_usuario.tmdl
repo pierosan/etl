@@ -1,0 +1,68 @@
+table 'fob_guard dim_usuario'
+	lineageTag: edca5280-8eff-4151-89b7-c2b851dbfff7
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 376ada98-18b0-4284-af37-8e285951224e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre
+		dataType: string
+		lineageTag: 03d7cc86-739f-4d84-86cb-4b71fafe5d56
+		summarizeBy: none
+		sourceColumn: nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column dni
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a8ae09e-34a9-4cc6-b829-a7578e62f605
+		summarizeBy: sum
+		sourceColumn: dni
+
+		annotation SummarizationSetBy = Automatic
+
+	column area
+		dataType: string
+		lineageTag: 2c1e9a24-b024-46d6-992b-729e0628251f
+		summarizeBy: none
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column empresa
+		dataType: string
+		lineageTag: a1864894-d6e2-4244-911f-343d9d4c1c99
+		summarizeBy: none
+		sourceColumn: empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_creacion
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6bcb7af2-bea9-49eb-8a2e-332245ba2b9d
+		summarizeBy: none
+		sourceColumn: fecha_creacion
+
+		variation Variación
+			isDefault
+			relationship: 9187c400-a796-4edb-ba02-f31aae883236
+			defaultHierarchy: LocalDateTable_dee01f58-fd13-4cb2-8050-b92f5f8aa098.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard dim_usuario' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_dim_usuario = Origen{[Schema="fob_guard",Item="dim_usuario"]}[Data]
+				in
+				    fob_guard_dim_usuario
+

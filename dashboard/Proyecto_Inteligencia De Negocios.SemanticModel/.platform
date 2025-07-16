@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Proyecto_Inteligencia De Negocios"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8d373240-3481-4e03-862d-cd327e3a3210"
+  }
+}

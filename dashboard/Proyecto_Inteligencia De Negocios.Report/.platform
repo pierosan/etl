@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Proyecto_Inteligencia De Negocios"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d00d0822-d894-4623-9292-ba3e9c8cd407"
+  }
+}

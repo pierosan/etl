@@ -1,0 +1,44 @@
+table 'fob_guard fact_inactividad'
+	lineageTag: 40c47bba-5636-4102-b115-87c5dba914a2
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 23edb1d0-0384-491e-b94f-e66fe72eb17d
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b0a4c54-9c0a-413a-a2eb-49ab7ab4b1db
+		summarizeBy: none
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_inactividad
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ff946d49-52af-4eff-9dd5-df573fc21265
+		summarizeBy: none
+		sourceColumn: hora_inactividad
+
+		variation Variación
+			isDefault
+			relationship: d5506914-c032-46eb-b7f9-321b2d4dbbe1
+			defaultHierarchy: LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_inactividad' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_inactividad = Origen{[Schema="fob_guard",Item="fact_inactividad"]}[Data]
+				in
+				    fob_guard_fact_inactividad
+

@@ -1,0 +1,64 @@
+table 'fob_guard fact_ubicacion_gps'
+	lineageTag: 1d71128a-9bcd-40e5-8083-507957e40499
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5311f2bc-272c-41fc-9532-8d3c0548ef61
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_dispositivo
+		dataType: int64
+		formatString: 0
+		lineageTag: 244bb819-a8fd-446a-8f90-eeec832a2abc
+		summarizeBy: none
+		sourceColumn: id_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1b260b41-5382-48d6-9c4b-97a0f205e89b
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		variation Variación
+			isDefault
+			relationship: def964ad-c460-4c38-b994-ec696d4261f3
+			defaultHierarchy: LocalDateTable_d6512e48-8b95-4b32-a77c-c9605b1f2648.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitud
+		dataType: double
+		lineageTag: e57fb1f8-833d-4d8a-bfd4-18033002801e
+		summarizeBy: sum
+		sourceColumn: latitud
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitud
+		dataType: double
+		lineageTag: c03a67b1-82af-4fa3-a0a6-578a2106bff2
+		summarizeBy: sum
+		sourceColumn: longitud
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'fob_guard fact_ubicacion_gps' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_ubicacion_gps = Origen{[Schema="fob_guard",Item="fact_ubicacion_gps"]}[Data]
+				in
+				    fob_guard_fact_ubicacion_gps
+

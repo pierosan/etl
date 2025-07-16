@@ -1,0 +1,52 @@
+table 'fob_guard fact_sesion'
+	lineageTag: e76f6cc1-f314-4af9-b1c4-4eef68787db1
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d482879-6001-491e-a0e7-9c59b2d1dcb2
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d1fd520-06ba-4329-b9da-882c44dc552f
+		summarizeBy: none
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cierre
+		dataType: string
+		lineageTag: 9934eee1-ab1a-43c1-bd7f-6452ee1ccce8
+		summarizeBy: none
+		sourceColumn: tipo_cierre
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 395a6c57-00d1-455b-8655-1b36a69fda73
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		variation Variación
+			isDefault
+			relationship: a64c15e2-efa3-4540-888b-e51f8c65052c
+			defaultHierarchy: LocalDateTable_429bfc5b-91ea-429a-9a5c-7b6cadb7f16b.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_sesion' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_sesion = Origen{[Schema="fob_guard",Item="fact_sesion"]}[Data]
+				in
+				    fob_guard_fact_sesion
+

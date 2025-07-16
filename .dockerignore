@@ -9,4 +9,5 @@ key.json
 readme.md
 iac/
 venv/
+dashboard/
 .

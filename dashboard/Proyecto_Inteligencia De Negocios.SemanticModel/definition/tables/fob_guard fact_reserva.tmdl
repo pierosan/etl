@@ -1,0 +1,77 @@
+table 'fob_guard fact_reserva'
+	lineageTag: 9ae5d62f-dcfe-426a-af6c-a360647ac221
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 60a9f815-fd8a-47f6-8ddb-e25875ca600d
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_dispositivo
+		dataType: int64
+		formatString: 0
+		lineageTag: bdb1a74a-3c99-43fe-969a-d218d4ee49b8
+		summarizeBy: none
+		sourceColumn: id_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 27e97819-10e4-4a3d-98e8-0ae03fcc8266
+		summarizeBy: none
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_reserva
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1c0aa1ce-b06e-4358-8216-69bd59ea2504
+		summarizeBy: none
+		sourceColumn: fecha_reserva
+
+		variation Variación
+			isDefault
+			relationship: 8d434cd4-09d5-47b0-920d-a10d6063cd2e
+			defaultHierarchy: LocalDateTable_29c97ab0-d078-4db4-8d8f-e66eec7f7003.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column motivo_reserva
+		dataType: string
+		lineageTag: 700e454e-c3ea-474e-adc6-9a84dddc4603
+		summarizeBy: none
+		sourceColumn: motivo_reserva
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_movimiento
+		dataType: string
+		lineageTag: 83c70f1a-4bd0-456a-927e-77f24b441f58
+		summarizeBy: none
+		sourceColumn: tipo_movimiento
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_dispositivo
+		dataType: string
+		lineageTag: 43d76013-f1b5-4a68-ab23-e85da506dc39
+		summarizeBy: none
+		sourceColumn: estado_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_reserva' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_reserva = Origen{[Schema="fob_guard",Item="fact_reserva"]}[Data]
+				in
+				    fob_guard_fact_reserva
+

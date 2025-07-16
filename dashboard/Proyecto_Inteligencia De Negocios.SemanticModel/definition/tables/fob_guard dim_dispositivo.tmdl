@@ -1,0 +1,85 @@
+table 'fob_guard dim_dispositivo'
+	lineageTag: eea191ba-243a-44d6-9eb5-7412ba04590e
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: a973ec07-12bf-4958-9382-46abc347ca05
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_dispositivo
+		dataType: int64
+		formatString: 0
+		lineageTag: 24ac6034-81d9-4dc9-b4cb-d08ecda267bb
+		summarizeBy: sum
+		sourceColumn: num_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descripcion
+		dataType: string
+		lineageTag: d3c152e8-d006-424a-a55e-b2774f851347
+		summarizeBy: none
+		sourceColumn: descripcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ubicacion
+		dataType: string
+		lineageTag: 728639d1-883f-4082-a40b-58742561539a
+		summarizeBy: none
+		sourceColumn: ubicacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_nfc
+		dataType: string
+		lineageTag: af26f26d-b80d-4d71-8e0c-20d2784419d9
+		summarizeBy: none
+		sourceColumn: id_nfc
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 6453c7d3-e2bf-4618-8d69-cc9b3d7866cc
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 68cac6ab-e637-4e6b-aaac-c3f37c6da880
+		summarizeBy: sum
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_registro
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2ad950fc-8bcc-4a15-9871-20c7143caa63
+		summarizeBy: none
+		sourceColumn: fecha_registro
+
+		variation Variación
+			isDefault
+			relationship: 6424ab1f-fd84-4a6f-913e-82c3c4215830
+			defaultHierarchy: LocalDateTable_2940af6b-cd49-4158-9fa8-d330921a2140.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard dim_dispositivo' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_dim_dispositivo = Origen{[Schema="fob_guard",Item="dim_dispositivo"]}[Data]
+				in
+				    fob_guard_dim_dispositivo
+

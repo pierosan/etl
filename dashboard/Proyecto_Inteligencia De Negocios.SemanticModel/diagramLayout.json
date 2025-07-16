@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 75
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 465.78545533822438,
+            "y": 485.96693996895254
+          },
+          "nodeIndex": "fob_guard dim_dispositivo",
+          "nodeLineageTag": "eea191ba-243a-44d6-9eb5-7412ba04590e",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 279.27628618678352,
+            "y": 206.12950382735869
+          },
+          "nodeIndex": "fob_guard dim_usuario",
+          "nodeLineageTag": "edca5280-8eff-4151-89b7-c2b851dbfff7",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50.000000000000014,
+            "y": 483.67976792492448
+          },
+          "nodeIndex": "fob_guard fact_inactividad",
+          "nodeLineageTag": "40c47bba-5636-4102-b115-87c5dba914a2",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568.89848745632548,
+            "y": 181.55526628064729
+          },
+          "nodeIndex": "fob_guard fact_reserva",
+          "nodeLineageTag": "9ae5d62f-dcfe-426a-af6c-a360647ac221",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 374.86148063395291,
+            "y": -50
+          },
+          "nodeIndex": "fob_guard fact_sesion",
+          "nodeLineageTag": "e76f6cc1-f314-4af9-b1c4-4eef68787db1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 585.05710087943589,
+            "y": 810.79804731564263
+          },
+          "nodeIndex": "fob_guard fact_ubicacion_gps",
+          "nodeLineageTag": "1d71128a-9bcd-40e5-8083-507957e40499",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

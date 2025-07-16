@@ -1,0 +1,67 @@
+relationship 6424ab1f-fd84-4a6f-913e-82c3c4215830
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard dim_dispositivo'.fecha_registro
+	toColumn: LocalDateTable_2940af6b-cd49-4158-9fa8-d330921a2140.Date
+
+relationship 9187c400-a796-4edb-ba02-f31aae883236
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard dim_usuario'.fecha_creacion
+	toColumn: LocalDateTable_dee01f58-fd13-4cb2-8050-b92f5f8aa098.Date
+
+relationship d5506914-c032-46eb-b7f9-321b2d4dbbe1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard fact_inactividad'.hora_inactividad
+	toColumn: LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a.Date
+
+relationship 8d434cd4-09d5-47b0-920d-a10d6063cd2e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard fact_reserva'.fecha_reserva
+	toColumn: LocalDateTable_29c97ab0-d078-4db4-8d8f-e66eec7f7003.Date
+
+relationship def964ad-c460-4c38-b994-ec696d4261f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard fact_ubicacion_gps'.timestamp
+	toColumn: LocalDateTable_d6512e48-8b95-4b32-a77c-c9605b1f2648.Date
+
+relationship a64c15e2-efa3-4540-888b-e51f8c65052c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'fob_guard fact_sesion'.timestamp
+	toColumn: LocalDateTable_429bfc5b-91ea-429a-9a5c-7b6cadb7f16b.Date
+
+relationship 26aa3571-6973-4071-878d-d3075158e907
+	isActive: false
+	fromColumn: 'fob_guard dim_dispositivo'.id_usuario
+	toColumn: 'fob_guard dim_usuario'.id
+
+	annotation PBI_IsFromSource = FS
+
+relationship 673a1e7b-f60b-47d6-ab96-711c600d7239
+	fromColumn: 'fob_guard fact_inactividad'.id_usuario
+	toColumn: 'fob_guard dim_usuario'.id
+
+	annotation PBI_IsFromSource = FS
+
+relationship fba71e6b-0be9-4453-ad91-c5c3a5500045
+	fromColumn: 'fob_guard fact_reserva'.id_dispositivo
+	toColumn: 'fob_guard dim_dispositivo'.id
+
+	annotation PBI_IsFromSource = FS
+
+relationship ea4f2965-7d79-4bf4-9ee9-d5a41b79a0c5
+	fromColumn: 'fob_guard fact_reserva'.id_usuario
+	toColumn: 'fob_guard dim_usuario'.id
+
+	annotation PBI_IsFromSource = FS
+
+relationship d49abd41-cd9e-4e9c-ab40-ec9c5fed66e9
+	fromColumn: 'fob_guard fact_ubicacion_gps'.id_dispositivo
+	toColumn: 'fob_guard dim_dispositivo'.id
+
+	annotation PBI_IsFromSource = FS
+
+relationship d0d98332-3a90-4fa9-b667-e71abcfa5142
+	fromColumn: 'fob_guard fact_sesion'.id_usuario
+	toColumn: 'fob_guard dim_usuario'.id
+
+	annotation PBI_IsFromSource = FS
+
