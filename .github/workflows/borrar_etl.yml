@@ -1,0 +1,23 @@
+name: Borrar recursos Azure
+
+on: [workflow_dispatch]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENCIALES }}
+        
+    - name: Crear resource group
+      run: |
+          az group delete  \
+            --name grupo_recursos_etl
+        
+    
