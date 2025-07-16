@@ -15,9 +15,10 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENCIALES }}
         
-    - name: Crear resource group
+    - name: Eliminar resource group
       run: |
           az group delete  \
-            --name grupo_recursos_etl
+            --name grupo_recursos_etl \
+            --yes
         
     
