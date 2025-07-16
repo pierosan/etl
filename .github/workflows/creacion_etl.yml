@@ -25,7 +25,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         resourceGroupName: "grupo_recursos_etl"
-        template: ./iac/azure_crear_infraestructura.bicep
+        template: ./iac/azure_crear_db.bicep
         parameters: 'administratorLogin=${{ secrets.DB_USUARIO }} administratorLoginPassword=${{ secrets.DB_PASS }}'
         
     - name: Instalar cliente MySQL
@@ -44,15 +44,22 @@ jobs:
               -u "$DB_USUARIO@$MYSQL_HOST" \
               -p"$DB_PASS" \
               -e "
-                CREATE DATABASE IF NOT EXISTS $DB_NAME
+                CREATE DATABASE IF NOT EXISTS fob_guard
                 CHARACTER SET utf8mb4
                 COLLATE utf8mb4_unicode_ci;
 
                 CREATE USER IF NOT EXISTS '$DB_ETL_USUARIO'@'%' IDENTIFIED BY '$DB_ETL_PASS';
-                GRANT CREATE, INSERT, DROP, REFERENCES ON $DB_NAME.* TO '$DB_ETL_USUARIO'@'%';
+                GRANT CREATE, INSERT, DROP, REFERENCES ON fob_guard.* TO '$DB_ETL_USUARIO'@'%';
 
                 CREATE USER IF NOT EXISTS '$DB_POWERBI_USUARIO'@'%' IDENTIFIED BY '$DB_POWERBI_PASS';
-                GRANT REFERENCES ON $DB_NAME.* TO '$DB_POWERBI_USUARIO'@'%';
+                GRANT SELECT ON fob_guard.* TO '$DB_POWERBI_USUARIO'@'%';
 
                 FLUSH PRIVILEGES;
               "
+
+    - name: Crear contenedor autoejecutable
+      uses: azure/arm-deploy@v1
+      with:
+        resourceGroupName: "grupo_recursos_etl"
+        template: ./iac/azure_crear_contenedor.bicep
+        parameters: 'llave=${{ secrets.LLAVE }}'
