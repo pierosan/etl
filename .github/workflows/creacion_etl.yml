@@ -32,29 +32,19 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y mysql-client
         
     - name: Configurar base de datos y usuarios
-      env:
-        DB_USUARIO: ${{ secrets.DB_USUARIO }}
-        DB_PASS: ${{ secrets.DB_PASS }}
-        DB_ETL_USUARIO: ${{ secrets.DB_ETL_USUARIO }}
-        DB_ETL_PASS: ${{ secrets.DB_ETL_PASS }}
-        DB_POWERBI_USUARIO: ${{ secrets.DB_POWERBI_USUARIO }}
-        DB_POWERBI_PASS: ${{ secrets.DB_POWERBI_PASS }}
       run: |
-        mysql -h "$MYSQL_HOST" \
-              -u "$DB_USUARIO@$MYSQL_HOST" \
-              -p"$DB_PASS" \
+        mysql -h dbfobguard.mysql.database.azure.com \
+              -u ${{ secrets.DB_USUARIO }} \
+              -p${{ secrets.DB_PASS }} \
               -e "
-                CREATE DATABASE IF NOT EXISTS fob_guard
-                CHARACTER SET utf8mb4
-                COLLATE utf8mb4_unicode_ci;
-
-                CREATE USER IF NOT EXISTS '$DB_ETL_USUARIO'@'%' IDENTIFIED BY '$DB_ETL_PASS';
-                GRANT CREATE, INSERT, DROP, REFERENCES ON fob_guard.* TO '$DB_ETL_USUARIO'@'%';
-
-                CREATE USER IF NOT EXISTS '$DB_POWERBI_USUARIO'@'%' IDENTIFIED BY '$DB_POWERBI_PASS';
-                GRANT SELECT ON fob_guard.* TO '$DB_POWERBI_USUARIO'@'%';
-
-                FLUSH PRIVILEGES;
+              CREATE DATABASE fob_guard
+              CHARACTER SET utf8mb4
+              COLLATE utf8mb4_unicode_ci;
+              CREATE USER '${{ secrets.DB_ETL_USUARIO }}'@'%' IDENTIFIED BY '${{ secrets.DB_ETL_PASS }}';
+              GRANT CREATE, INSERT, DROP, REFERENCES ON fob_guard.* TO '${{ secrets.DB_ETL_USUARIO }}'@'%';
+              CREATE USER '${{ secrets.DB_POWERBI_USUARIO }}'@'%' IDENTIFIED BY '${{ secrets.DB_POWERBI_PASS }}';
+              GRANT SELECT ON fob_guard.* TO '${{ secrets.DB_POWERBI_USUARIO }}'@'%';
+              FLUSH PRIVILEGES;
               "
 
     - name: Crear contenedor autoejecutable

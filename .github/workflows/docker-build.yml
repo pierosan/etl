@@ -25,3 +25,15 @@ jobs:
           context: .
           push: true
           tags: pierosan/etl_fob_guard:latest
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENCIALES }}
+
+      - name: Actualizar imagen de contenedor
+        run: |
+            az containerapp job update \
+            --name contenedoretl \
+            --resource-group grupo_recursos_etl \
+            --image docker.io/pierosan/etl_fob_guard:latest
